@@ -2,15 +2,21 @@
 Console.WriteLine("Welcome to EmployeWage!");
 
 Random random = new Random(); 
-const int present = 1;
-const int absent = 0;
+const int   present = 1,
+              absent = 0,
+              empWorkingHrs = 8,
+              ratePerHr = 20;
 
 
-int ispresent  = random.Next(2);  
+int isPresent  = random.Next(2), //0,1
+    empWage = 0;
 
-if(ispresent  == present)
+
+if(isPresent  == present)
 {
     Console.WriteLine(" Employee is Present ");
+    empWage = empWorkingHrs * ratePerHr;
+
 
 }
 else
@@ -18,6 +24,7 @@ else
     Console.WriteLine(" Employee is Absent"); 
 }
 
+Console.WriteLine("Employee Wage : "+ empWage);
 
 
 
