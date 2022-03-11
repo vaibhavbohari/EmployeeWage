@@ -1,44 +1,38 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Welcome to EmployeWage!");
 
-Random random = new Random(); //it is using to generate random number
-const int     absent = 0,
-              present = 1,
-              halfday = 2,
-              fullMonth = 3,
-              ratePerHr = 20,
-              fullTime = 8,
-              partTime = 4,
-              perMonthDays=20;
+const int PART_TIME = 1,
+          FULL_TIME = 2,
+          RATE_PER_HR = 20,
+          NUM_WORKING_DAYS = 20,
+          MAX_HRS_IN_MONTH = 100;
 
-
-int isPresent = random.Next(4), // 0= absent , 1=fullTime/present, 2=halfday/partTime , 3 = fullMonth
-    empWage = 0;
-   
-switch ( isPresent )
+// Variables
+int empHrs = 0,
+    totalEmpHrs = 0,
+    totalWorkingDays = 0;
+//Comutation
+while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays <= NUM_WORKING_DAYS)
 {
-    case present:
-        Console.WriteLine("Employee is Present fullTime");
-        empWage = ratePerHr * fullTime;
-        break;
-    case halfday:
-        Console.WriteLine(" Employee is Present partTime ");
-        empWage = ratePerHr * partTime;
-        break;
-    case fullMonth:
-        Console.WriteLine(" Employee per Month Wage ");
-        empWage = perMonthDays * (ratePerHr * fullTime);
-        break;
-
-    default:
-        Console.WriteLine(" Employee is Absent");
-        break;
-
-
+    totalWorkingDays++;
+    Random random = new Random(); //it is using to generate random number
+    int empCheck = random.Next(0, 3);
+    switch (empCheck)
+    {
+        case PART_TIME:
+            empHrs = 4;
+            break;
+        case FULL_TIME:
+            empHrs = 8;
+            break;
+        defaults:
+            empHrs = 0;
+            break;
+    }
+    totalEmpHrs += empHrs;
+    Console.WriteLine("Day#:" + totalWorkingDays + "EMP_Hrs:" + empHrs);
 }
 
-Console.WriteLine("Employee Wage : "+ empWage);
-
-
-
+    int totalEmpWage = totalEmpHrs * RATE_PER_HR;
+    Console.WriteLine("Total Emp Wage:" + totalEmpWage);
 
